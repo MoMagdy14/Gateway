@@ -5,11 +5,13 @@ import com.bm.internship.gateway.entity.Gateway;
 import com.bm.internship.gateway.repository.DeviceRepository;
 import com.bm.internship.gateway.repository.GatewayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class GatewayService {
     @Autowired
     private GatewayRepository gatewayRepository;
