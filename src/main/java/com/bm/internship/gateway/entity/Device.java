@@ -1,5 +1,6 @@
 package com.bm.internship.gateway.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name="device")
+@Entity(name = "device")
 public class Device {
     public static enum Status {
         Online, offline
@@ -19,16 +20,21 @@ public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="uid", length = 100)
+    @Column(name = "uid", length = 100)
     private Long UID;
 
-    @Column(name="vender", length = 50, nullable = false)
+    @Column(name = "vender", length = 50, nullable = false)
     private String vendor;
 
     @CreatedDate
-    @Column(name="created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date dateCreated;
 
-    @Column(name="status", nullable = false)
+    @Column(name = "status", nullable = false)
     private Status status;
+
+    @JoinColumn(name = "gateway_serial")
+    @JsonIgnore
+    @ManyToOne
+    private Gateway gateway;
 }

@@ -14,7 +14,7 @@ public class GatewayController {
     }
 
     @GetMapping(value="/getById")
-    public Gateway getGateway() {
+    public Gateway getGatewayById() {
         return null;
     }
 
