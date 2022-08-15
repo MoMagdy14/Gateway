@@ -32,9 +32,9 @@ public class GatewayController {
         return gatewayService.deleteGatewayBySerialNumber(serialNumber);
     }
 
-    @PostMapping(value = "/addDevice")
-    public boolean addDeviceToGateway(@RequestBody String gatewaySerialNumber,
-                                      @RequestBody Long deviceId) {
+    @GetMapping(value = "/addDevice")
+    public boolean addDeviceToGateway(@RequestParam String gatewaySerialNumber,
+                                      @RequestParam Long deviceId) {
         return gatewayService.addDeviceToGateway(gatewaySerialNumber, deviceId);
     }
 

@@ -28,6 +28,17 @@ public class GatewayService {
 
     public Gateway CreateNewGateway(Gateway newGateway) {
         if (newGateway != null) {
+            String ip = newGateway.getIpv4();
+            String arr[] = ip.split("\\.");
+            if (arr.length != 4) {
+                return null;
+            }
+            for (int i = 0; i < arr.length; i++) {
+                int value = Integer.parseInt(arr[i]);
+                if (value > 255 || value < 0) {
+                    return null;
+                }
+            }
             return gatewayRepository.save(newGateway);
         }
         return null;
@@ -44,7 +55,13 @@ public class GatewayService {
     public boolean addDeviceToGateway(String serialNumber, Long deviceId) {
         if (serialNumber != null && deviceId != null) {
             Device device = deviceRepository.findById(deviceId).get();
-            device.setGateway(gatewayRepository.findById(serialNumber).get());
+            Gateway gateway = gatewayRepository.findById(serialNumber).get();
+            if (gateway.getDevices().size() < 10) {
+                device.setGateway(gateway);
+            }
+            else {
+                return false;
+            }
             deviceRepository.save(device);
             return true;
         }
