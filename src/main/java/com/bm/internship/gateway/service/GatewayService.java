@@ -22,7 +22,7 @@ public class GatewayService {
         return (List<Gateway>) gatewayRepository.findAll();
     }
 
-    public Gateway getGatewayById(String serialNumber) {
+    public Gateway getGatewayBySerialNumber(String serialNumber) {
         return gatewayRepository.findById(serialNumber).get();
     }
 
@@ -33,7 +33,7 @@ public class GatewayService {
         return null;
     }
 
-    public boolean deleteGatewayById(String serialNumber) {
+    public boolean deleteGatewayBySerialNumber(String serialNumber) {
         if (serialNumber != null) {
             gatewayRepository.deleteById(serialNumber);
             return true;

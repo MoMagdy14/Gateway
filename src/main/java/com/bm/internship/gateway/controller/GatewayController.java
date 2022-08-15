@@ -17,19 +17,19 @@ public class GatewayController {
         return gatewayService.getAllGateway();
     }
 
-    @GetMapping(value="/getById")
-    public Gateway getGatewayById(@RequestParam String id) {
-        return gatewayService.getGatewayById(id);
+    @GetMapping(value="/getBySerialNumber")
+    public Gateway getGatewayBySerialNumber(@RequestParam String serialNumber) {
+        return gatewayService.getGatewayBySerialNumber(serialNumber);
     }
 
     @PostMapping(value = "/add")
-    public Gateway createNewGateway(@RequestParam Gateway newGateway) {
+    public Gateway createNewGateway(@RequestBody Gateway newGateway) {
         return gatewayService.CreateNewGateway(newGateway);
     }
 
-    @DeleteMapping(value = "/del/{gatewayId}")
-    public boolean deleteGatewayById(@PathVariable(value = "gatewayId") String id) {
-        return gatewayService.deleteGatewayById(id);
+    @DeleteMapping(value = "/del/{gatewaySerialNumber}")
+    public boolean deleteGatewayBySerialNumber(@PathVariable(value = "gatewaySerialNumber") String serialNumber) {
+        return gatewayService.deleteGatewayBySerialNumber(serialNumber);
     }
 
     @PostMapping(value = "/addDevice")

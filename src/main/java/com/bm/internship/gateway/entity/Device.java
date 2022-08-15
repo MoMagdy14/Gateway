@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.Instant;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,19 +17,19 @@ import java.sql.Date;
 @Entity(name = "device")
 public class Device {
     public static enum Status {
-        Online, offline
+        Online, Offline
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "uid", length = 100)
+    @Column(name = "uid")
     private Long UID;
 
-    @Column(name = "vender", length = 50, nullable = false)
+    @Column(name = "vendor", length = 50, nullable = false)
     private String vendor;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at")
+    @CreationTimestamp
     private Date dateCreated;
 
     @Column(name = "status", nullable = false)
